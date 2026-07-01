@@ -1,0 +1,157 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*
+ * Theme palettes — each block is a full set of "R G B" triples (no commas,
+ * no rgb() wrapper) consumed by tailwind.config.ts via rgb(var(--x) /
+ * <alpha-value>). Swapping the [data-theme] attribute on <html> (done by
+ * ThemeSwitcher) re-paints the whole site instantly since every color
+ * utility resolves through these variables — including page backgrounds,
+ * not just accents.
+ *
+ * `bg` and `text` are always an opposite-lightness pair (whichever is the
+ * light one, the other is dark) — most sections pair them as
+ * bg-bg/text-text, while Contact and Footer intentionally use the
+ * *inverted* pairing (bg-text/text-bg). That inversion is what makes those
+ * two sections read as a contrasting accent panel against the rest of the
+ * page in every theme, including the dark one below, with no special
+ * casing needed.
+ */
+:root,
+[data-theme="terracotta"] {
+  --color-bg: 250 246 240;
+  --color-bg-alt: 243 234 224;
+  --color-surface: 255 255 255;
+  --color-primary: 139 75 59;
+  --color-secondary: 201 166 107;
+  --color-text: 43 36 32;
+  --color-text-muted: 107 98 88;
+}
+
+[data-theme="espresso-rose"] {
+  --color-bg: 243 234 228;
+  --color-bg-alt: 233 220 211;
+  --color-surface: 255 255 255;
+  --color-primary: 61 43 38;
+  --color-secondary: 184 105 95;
+  --color-text: 31 22 19;
+  --color-text-muted: 110 91 84;
+}
+
+[data-theme="sepia-sage"] {
+  --color-bg: 246 241 231;
+  --color-bg-alt: 237 229 211;
+  --color-surface: 255 255 255;
+  --color-primary: 107 122 94;
+  --color-secondary: 199 149 91;
+  --color-text: 51 48 42;
+  --color-text-muted: 118 111 98;
+}
+
+[data-theme="blush-copper"] {
+  --color-bg: 251 240 235;
+  --color-bg-alt: 245 225 216;
+  --color-surface: 255 255 255;
+  --color-primary: 168 93 59;
+  --color-secondary: 217 140 110;
+  --color-text: 46 33 28;
+  --color-text-muted: 111 90 80;
+}
+
+/* Dark, dramatic — the one dark theme in the set. */
+[data-theme="charcoal-amber"] {
+  --color-bg: 28 24 21;
+  --color-bg-alt: 38 32 25;
+  --color-surface: 36 30 26;
+  --color-primary: 232 168 84;
+  --color-secondary: 138 122 106;
+  --color-text: 245 239 230;
+  --color-text-muted: 179 169 156;
+}
+
+[data-theme="mahogany-parchment"] {
+  --color-bg: 241 231 216;
+  --color-bg-alt: 230 216 194;
+  --color-surface: 255 255 255;
+  --color-primary: 92 46 35;
+  --color-secondary: 176 139 79;
+  --color-text: 36 27 21;
+  --color-text-muted: 110 95 79;
+}
+
+[data-theme="clay-ink"] {
+  --color-bg: 237 230 221;
+  --color-bg-alt: 226 217 204;
+  --color-surface: 255 255 255;
+  --color-primary: 188 113 80;
+  --color-secondary: 140 132 119;
+  --color-text: 24 22 20;
+  --color-text-muted: 107 100 89;
+}
+
+[data-theme="honey-plum"] {
+  --color-bg: 250 243 227;
+  --color-bg-alt: 242 231 204;
+  --color-surface: 255 255 255;
+  --color-primary: 217 164 65;
+  --color-secondary: 92 58 82;
+  --color-text: 36 28 34;
+  --color-text-muted: 110 96 103;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+body {
+  background-color: rgb(var(--color-bg));
+  color: rgb(var(--color-text));
+  transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+::selection {
+  background-color: rgb(var(--color-primary));
+  color: rgb(var(--color-bg));
+}
+
+/* Visible focus ring on all interactive elements, kept even for mouse users
+   so the site remains navigable with a keyboard. */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid rgb(var(--color-primary));
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* Section heading underline flourish shared across the page. */
+.underline-flourish {
+  position: relative;
+}
+
+.underline-flourish::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -0.35em;
+  width: 3.5rem;
+  height: 3px;
+  background: linear-gradient(90deg, rgb(var(--color-primary)), rgb(var(--color-secondary)));
+  border-radius: 999px;
+}

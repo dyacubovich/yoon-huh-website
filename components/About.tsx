@@ -15,7 +15,7 @@ export default function About() {
             <div className="relative aspect-[4/5] overflow-hidden rounded-sm shadow-2xl shadow-text/20">
               {/* PLACEHOLDER: swap for a real studio portrait of Yoon Huh */}
               <Image
-                src="https://picsum.photos/seed/yoonhuh-portrait/800/1000"
+                src="/images/portrait.jpg"
                 alt="Portrait of Yoon Huh seated at a piano, placeholder photo"
                 fill
                 sizes="(min-width: 768px) 28rem, 90vw"
